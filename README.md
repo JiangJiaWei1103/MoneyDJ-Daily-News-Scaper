@@ -2,5 +2,5 @@
 ## How to run
 * Clone the repo to local
 ```git clone [remote url]```
-* Adjust the date of news and run directly
-```python moneydj_scraper.py```
+* Run directly with the date specified (e.g. 10-28 means month=10, day=28)
+```python moneydj_scraper.py XX-XX```
