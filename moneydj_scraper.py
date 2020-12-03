@@ -20,6 +20,27 @@ import config
 dir_path = config.path   # path to store scraped content
 #base_url = "https://blog.moneydj.com/news/page/"   # url base of the target webpage
 base_url = "https://www.moneydj.com/KMDJ/News/NewsRealList.aspx?index1="
+topic_mapping = {
+    "all": "&a=MB00",
+    "headline": "&a=MB0",
+    "totalEconomy": "&a=MB0",
+    "internationalStock": "&a=MB0",
+    "taiwanStock": "&a=MB0",
+    "sshStock": "&a=MB0",   # Shengzhen, Shanghai, HongKong
+    "asiaStock": "&a=MB0",
+    "usStock": "&a=MB0",
+    "euroStock": "&a=MB0",
+    "futuresOptions": "&a=MB0",
+    "rawMaterials": "&a=MB0",
+    "forex": "&a=MB0",
+    "bond": "&a=MB0",
+    "industryInfo": "&a=MB0",
+    "financialMarket": "&a=MB0",
+    "techTrend": "&a=MB0",
+    "researchReport": "&a=MB0",
+    "shortMarketTrend": "&a=MB0",
+}
+#suffix = topic_mapping[sys.argv[2]]
 suffix = "&a=MB010000"
 news_url_prefix = "https://www.moneydj.com"
 date_start = sys.argv[1]   # the scraping will start at this date given by user
@@ -51,7 +72,6 @@ def web_el_parser():   # parse basic web elements
         news_in_one_page = news_table.find_all("tr")[1:]   # all pieces of news in one page
         for news in news_in_one_page:
             details = news.find_all("td")[:-1]   # detailed information for a piece of news
-            #print(details[0].text.strip())
             date = details[0].text.strip().split(" ")[0].replace("/", "-")   # date of news
             if date > date_start:
                 continue
